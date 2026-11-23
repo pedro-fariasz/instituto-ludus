@@ -1,0 +1,374 @@
+/* Instituto Ludus — estilos */
+
+:root {
+  --azul-marinho: #0B1F4B;
+  --azul: #5B9BFF;
+  --azul-claro: #EAF1FF;
+  --texto: #3A4A6B;
+  --borda: #C9D6EE;
+  --branco: #FFFFFF;
+  --erro: #C0392B;
+  --sucesso: #1E7A46;
+  --radius: 14px;
+  --toque-min: 44px;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--branco);
+  color: var(--texto);
+  font-family: 'Inter', system-ui, sans-serif;
+  line-height: 1.5;
+  position: relative;
+}
+
+/* Detalhe gamer: quadradinhos de pixel no fundo */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background-image:
+    linear-gradient(90deg, var(--azul-claro) 1px, transparent 1px),
+    linear-gradient(0deg, var(--azul-claro) 1px, transparent 1px);
+  background-size: 28px 28px;
+  opacity: .35;
+  mask-image: linear-gradient(180deg, rgba(0,0,0,.6), transparent 320px);
+}
+
+h1, h2, h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  color: var(--azul-marinho);
+  margin: 0 0 .5em;
+}
+
+a { color: var(--azul); }
+a:focus-visible, button:focus-visible, input:focus-visible,
+select:focus-visible, textarea:focus-visible, label:focus-visible {
+  outline: 3px solid var(--azul);
+  outline-offset: 2px;
+}
+
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Rótulo estilo "fase" */
+.tag-pixel {
+  display: inline-block;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 10px;
+  color: var(--azul-marinho);
+  background: var(--azul-claro);
+  border: 2px solid var(--borda);
+  border-radius: 6px;
+  padding: 6px 10px;
+  letter-spacing: .5px;
+}
+
+/* Topo */
+.topo {
+  padding: 24px 0 8px;
+}
+.topo-marca {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.topo-marca img, .topo-marca svg { flex: none; }
+.topo-nome { font-size: 1.4rem; margin: 0; }
+.slogan {
+  font-size: .95rem;
+  color: var(--texto);
+  margin-top: 2px;
+}
+
+/* Chamada */
+.chamada {
+  padding: 28px 0 10px;
+  text-align: center;
+}
+.chamada h2 { font-size: 1.6rem; }
+.chamada p { font-size: 1.05rem; }
+
+/* Cartões de perfil */
+.cartoes {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  padding: 16px 0 8px;
+}
+@media (min-width: 680px) {
+  .cartoes { grid-template-columns: repeat(3, 1fr); }
+}
+
+.cartao-perfil {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: var(--azul-claro);
+  border: 2px solid var(--borda);
+  border-radius: var(--radius);
+  padding: 20px;
+  cursor: pointer;
+  font-family: inherit;
+  color: var(--texto);
+  min-height: var(--toque-min);
+  transition: border-color .15s ease, transform .1s ease, background .15s ease;
+}
+.cartao-perfil:hover { border-color: var(--azul); }
+.cartao-perfil:active { transform: scale(.99); }
+.cartao-perfil.selecionado {
+  background: var(--azul-marinho);
+  border-color: var(--azul-marinho);
+  color: var(--branco);
+}
+.cartao-perfil.selecionado h3,
+.cartao-perfil.selecionado .cartao-emoji { color: var(--branco); }
+
+.cartao-emoji {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 11px;
+  color: var(--azul);
+  display: block;
+  margin-bottom: 10px;
+}
+.cartao-perfil h3 { font-size: 1.1rem; margin-bottom: 6px; }
+.cartao-perfil p { margin: 0; font-size: .92rem; }
+
+/* Formulário */
+.form-perfil {
+  display: none;
+  margin-top: 28px;
+  padding: 24px;
+  background: var(--azul-claro);
+  border: 2px solid var(--borda);
+  border-radius: var(--radius);
+}
+.form-perfil.ativo { display: block; }
+
+.form-perfil h2 { font-size: 1.3rem; }
+
+fieldset {
+  border: 1px solid var(--borda);
+  border-radius: 10px;
+  margin: 0 0 18px;
+  padding: 14px 16px 16px;
+}
+fieldset legend {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  color: var(--azul-marinho);
+  padding: 0 6px;
+  font-size: .95rem;
+}
+
+.campo {
+  margin-bottom: 16px;
+}
+.campo label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: var(--azul-marinho);
+  font-size: .92rem;
+}
+.campo .ajuda {
+  font-size: .82rem;
+  color: var(--texto);
+  margin-top: 4px;
+}
+.campo .erro-campo {
+  font-size: .85rem;
+  color: var(--erro);
+  margin-top: 6px;
+  display: none;
+}
+.campo.com-erro .erro-campo { display: block; }
+.campo.com-erro input,
+.campo.com-erro select,
+.campo.com-erro textarea {
+  border-color: var(--erro);
+}
+
+input[type="text"], input[type="email"], input[type="tel"],
+input[type="number"], input[type="url"], select, textarea {
+  width: 100%;
+  min-height: var(--toque-min);
+  padding: 10px 12px;
+  border: 1.5px solid var(--borda);
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 1rem;
+  color: var(--texto);
+  background: var(--branco);
+}
+textarea { min-height: 80px; resize: vertical; }
+
+.opcoes-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.opcao-linha {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  min-height: var(--toque-min);
+  padding: 6px 0;
+}
+.opcao-linha input[type="radio"],
+.opcao-linha input[type="checkbox"] {
+  width: 22px;
+  height: 22px;
+  flex: none;
+  margin-top: 2px;
+}
+.opcao-linha label { font-weight: 400; margin: 0; color: var(--texto); }
+.opcao-linha .ajuda { margin-top: 2px; }
+
+.checkbox-consentimento {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  background: var(--branco);
+  border: 1.5px solid var(--borda);
+  border-radius: 10px;
+  padding: 14px;
+}
+.checkbox-consentimento input {
+  width: 24px;
+  height: 24px;
+  flex: none;
+  margin-top: 2px;
+}
+
+/* Honeypot escondido */
+.campo-honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.bloco-menor {
+  border: 2px dashed var(--azul);
+  background: var(--branco);
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-bottom: 18px;
+}
+.bloco-menor p { margin-top: 0; font-weight: 600; color: var(--azul-marinho); }
+
+.aviso-sem-cobranca {
+  background: var(--branco);
+  border-left: 4px solid var(--azul);
+  padding: 12px 14px;
+  border-radius: 6px;
+  font-size: .92rem;
+  margin-bottom: 18px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--toque-min);
+  min-width: var(--toque-min);
+  padding: 12px 22px;
+  border-radius: 10px;
+  border: none;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 1rem;
+  cursor: pointer;
+}
+.btn-primario {
+  background: var(--azul-marinho);
+  color: var(--branco);
+  width: 100%;
+}
+.btn-primario:disabled {
+  background: var(--borda);
+  color: var(--texto);
+  cursor: not-allowed;
+}
+.btn-secundario {
+  background: var(--branco);
+  color: var(--azul-marinho);
+  border: 2px solid var(--azul-marinho);
+}
+
+.mensagem-idade {
+  background: #FFF4E5;
+  border: 1px solid #F0C27B;
+  color: #7A4B00;
+  padding: 12px 14px;
+  border-radius: 8px;
+  margin-top: 8px;
+  display: none;
+}
+.mensagem-idade.visivel { display: block; }
+
+/* Tela de sucesso */
+.tela-sucesso {
+  display: none;
+  text-align: center;
+  padding: 40px 20px;
+  margin-top: 24px;
+  background: var(--azul-claro);
+  border: 2px solid var(--borda);
+  border-radius: var(--radius);
+}
+.tela-sucesso.ativa { display: block; }
+.tela-sucesso .check {
+  font-size: 2.4rem;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.status-envio {
+  margin-top: 14px;
+  font-size: .95rem;
+  text-align: center;
+}
+.status-envio.erro { color: var(--erro); }
+
+/* Rodapé */
+footer {
+  margin-top: 48px;
+  padding: 24px 0 40px;
+  text-align: center;
+  font-size: .85rem;
+  color: var(--texto);
+  border-top: 1px solid var(--borda);
+}
+footer p { margin: 0 0 6px; }
+
+/* Página de privacidade */
+.pagina-privacidade {
+  padding: 32px 0 60px;
+}
+.pagina-privacidade h2 {
+  font-size: 1.2rem;
+  margin-top: 28px;
+}
+.pagina-privacidade p, .pagina-privacidade li { font-size: .98rem; }
+.voltar-link { display: inline-block; margin-bottom: 20px; }
+
+.visualmente-oculto {
+  position: absolute;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}

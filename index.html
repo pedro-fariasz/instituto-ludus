@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Instituto Ludus — Onde todo jogo vira oportunidade</title>
+<meta name="description" content="Instituto Ludus: entre no time como jovem, doador ou empresa parceira e receba o kit completo no seu e-mail.">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&family=Inter:wght@400;600&family=Press+Start+2P&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="topo">
+  <div class="container topo-marca">
+    <svg viewBox="0 0 560 560" width="56" height="56" aria-hidden="true"><rect width="560" height="560" rx="96" fill="#0B1F4B"/><rect x="80" y="300" width="120" height="170" rx="12" fill="#fff"/><rect x="220" y="230" width="120" height="240" rx="12" fill="#fff"/><rect x="360" y="340" width="120" height="130" rx="12" fill="#fff"/><rect x="245" y="120" width="70" height="70" rx="8" fill="#5B9BFF"/><rect x="150" y="160" width="34" height="34" rx="5" fill="#5B9BFF" opacity=".55"/><rect x="390" y="190" width="34" height="34" rx="5" fill="#5B9BFF" opacity=".55"/></svg>
+    <div>
+      <h1 class="topo-nome">Instituto Ludus</h1>
+      <p class="slogan">Onde todo jogo vira oportunidade</p>
+    </div>
+  </div>
+</header>
+
+<main class="container" id="conteudo-principal">
+
+  <section class="chamada">
+    <span class="tag-pixel">FASE 1</span>
+    <h2>Entre no time Ludus</h2>
+    <p>Escolha quem você é e receba no seu e-mail o kit completo.</p>
+  </section>
+
+  <section class="cartoes" aria-label="Escolha seu perfil">
+    <button type="button" class="cartao-perfil" id="cartao-jovem" data-perfil="jovem" aria-pressed="false">
+      <span class="cartao-emoji">JOVEM</span>
+      <h3>Sou jovem</h3>
+      <p>Quero entrar no programa (14 a 24 anos).</p>
+    </button>
+    <button type="button" class="cartao-perfil" id="cartao-doador" data-perfil="doador" aria-pressed="false">
+      <span class="cartao-emoji">DOADOR</span>
+      <h3>Quero doar</h3>
+      <p>Quero apoiar como pessoa física.</p>
+    </button>
+    <button type="button" class="cartao-perfil" id="cartao-empresa" data-perfil="empresa" aria-pressed="false">
+      <span class="cartao-emoji">EMPRESA</span>
+      <h3>Sou empresa</h3>
+      <p>Quero conhecer as cotas de parceria.</p>
+    </button>
+  </section>
+
+  <form id="form-ludus" novalidate aria-live="polite">
+
+    <input type="hidden" name="perfil" id="campo-perfil" value="">
+    <input type="hidden" name="origem" id="campo-origem" value="">
+
+    <!-- honeypot anti-spam -->
+    <div class="campo-honeypot" aria-hidden="true">
+      <label for="campo-site">Não preencha este campo</label>
+      <input type="text" id="campo-site" name="site" tabindex="-1" autocomplete="off">
+    </div>
+
+    <div id="bloco-formulario" class="form-perfil">
+
+      <h2 id="titulo-formulario">Formulário</h2>
+
+      <fieldset>
+        <legend>Seus dados</legend>
+
+        <div class="campo">
+          <label for="campo-nome">Nome completo *</label>
+          <input type="text" id="campo-nome" name="nome" required autocomplete="name">
+          <p class="erro-campo">Digite seu nome completo.</p>
+        </div>
+
+        <div class="campo">
+          <label for="campo-email">E-mail *</label>
+          <input type="email" id="campo-email" name="email" required autocomplete="email" inputmode="email">
+          <p class="erro-campo">Digite um e-mail válido.</p>
+        </div>
+
+        <div class="campo">
+          <label for="campo-whatsapp">WhatsApp (opcional)</label>
+          <input type="tel" id="campo-whatsapp" name="whatsapp" placeholder="(00) 00000-0000" autocomplete="tel" inputmode="numeric">
+          <p class="erro-campo">Use o formato (00) 00000-0000.</p>
+        </div>
+
+        <div class="campo">
+          <label for="campo-como-conheceu">Como conheceu o Ludus? *</label>
+          <select id="campo-como-conheceu" name="comoConheceu" required>
+            <option value="">Selecione...</option>
+            <option value="apresentacao">Apresentação / QR Code</option>
+            <option value="instagram">Instagram</option>
+            <option value="tiktok">TikTok</option>
+            <option value="influenciador">Influenciador</option>
+            <option value="evento">Evento</option>
+            <option value="indicacao">Indicação</option>
+            <option value="outro">Outro</option>
+          </select>
+          <p class="erro-campo">Selecione uma opção.</p>
+        </div>
+      </fieldset>
+
+      <!-- ===================== PERFIL JOVEM ===================== -->
+      <fieldset id="secao-jovem" class="secao-perfil" hidden>
+        <legend>Sobre você</legend>
+
+        <div class="campo">
+          <label for="jovem-idade">Idade *</label>
+          <input type="number" id="jovem-idade" name="jovemIdade" min="1" max="120" inputmode="numeric">
+          <p class="erro-campo">Digite sua idade (14 a 24 anos).</p>
+          <p class="mensagem-idade" id="mensagem-fora-idade">O programa do Ludus atende jovens de 14 a 24 anos. Mesmo assim, obrigado pelo interesse — fique de olho nas nossas redes para outras formas de participar!</p>
+        </div>
+
+        <div class="campo">
+          <label for="jovem-cidade">Cidade e bairro *</label>
+          <input type="text" id="jovem-cidade" name="jovemCidadeBairro">
+          <p class="erro-campo">Conte onde você mora.</p>
+        </div>
+
+        <div class="campo">
+          <label for="jovem-escolaridade">Situação escolar *</label>
+          <select id="jovem-escolaridade" name="jovemEscolaridade">
+            <option value="">Selecione...</option>
+            <option value="cursando-fundamental">Cursando o fundamental</option>
+            <option value="cursando-medio">Cursando o médio</option>
+            <option value="medio-concluido">Médio concluído</option>
+            <option value="cursando-faculdade">Cursando faculdade</option>
+            <option value="parei-de-estudar">Parei de estudar</option>
+          </select>
+          <p class="erro-campo">Selecione uma opção.</p>
+        </div>
+
+        <div class="campo">
+          <label for="jovem-trilha">Trilha de interesse *</label>
+          <select id="jovem-trilha" name="jovemTrilha">
+            <option value="">Selecione...</option>
+            <option value="tech">Tech — programação, IA, cibersegurança, games</option>
+            <option value="creator">Creator — vídeo, design, copy, tráfego</option>
+            <option value="pro-player">Pro Player — competir em alto nível</option>
+            <option value="nao-sei">Ainda não sei</option>
+          </select>
+          <p class="erro-campo">Selecione uma opção.</p>
+        </div>
+
+        <div class="campo">
+          <label for="jovem-jogos">Quais jogos você mais joga?</label>
+          <input type="text" id="jovem-jogos" name="jovemJogos">
+        </div>
+
+        <div class="campo">
+          <label for="jovem-equipamento">Onde você joga ou estuda? *</label>
+          <select id="jovem-equipamento" name="jovemEquipamento">
+            <option value="">Selecione...</option>
+            <option value="computador-proprio">Computador próprio</option>
+            <option value="so-celular">Só celular</option>
+            <option value="nao-tenho-equipamento">Não tenho equipamento</option>
+          </select>
+          <p class="erro-campo">Selecione uma opção.</p>
+        </div>
+
+        <div class="campo">
+          <label for="jovem-cadunico">Sua família está inscrita no CadÚnico?</label>
+          <select id="jovem-cadunico" name="jovemCadunico">
+            <option value="">Selecione...</option>
+            <option value="sim">Sim</option>
+            <option value="nao">Não</option>
+            <option value="nao-sei">Não sei</option>
+          </select>
+        </div>
+
+        <div class="campo">
+          <label for="jovem-genero">Gênero (opcional)</label>
+          <select id="jovem-genero" name="jovemGenero">
+            <option value="">Prefiro não informar agora</option>
+            <option value="menina-mulher">Menina / mulher</option>
+            <option value="menino-homem">Menino / homem</option>
+            <option value="nao-binario">Não binário</option>
+            <option value="prefiro-nao-dizer">Prefiro não dizer</option>
+          </select>
+          <p class="ajuda">Usamos para cumprir a meta de 50% das vagas para meninas.</p>
+        </div>
+
+        <div class="campo">
+          <span id="label-pcd">Você é uma pessoa com deficiência? (opcional)</span>
+          <div class="opcoes-lista" role="group" aria-labelledby="label-pcd">
+            <div class="opcao-linha">
+              <input type="radio" id="jovem-pcd-sim" name="jovemPcd" value="sim">
+              <label for="jovem-pcd-sim">Sim</label>
+            </div>
+            <div class="opcao-linha">
+              <input type="radio" id="jovem-pcd-nao" name="jovemPcd" value="nao">
+              <label for="jovem-pcd-nao">Não</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="campo" id="campo-adaptacao" hidden>
+          <label for="jovem-adaptacao">Precisa de alguma adaptação?</label>
+          <input type="text" id="jovem-adaptacao" name="jovemAdaptacao">
+        </div>
+
+        <div class="bloco-menor" id="bloco-responsavel" hidden>
+          <p>Como você tem menos de 18 anos, precisamos dos dados de um responsável.</p>
+
+          <div class="campo">
+            <label for="resp-nome">Nome do responsável *</label>
+            <input type="text" id="resp-nome" name="responsavelNome">
+            <p class="erro-campo">Digite o nome do responsável.</p>
+          </div>
+
+          <div class="campo">
+            <label for="resp-email">E-mail do responsável *</label>
+            <input type="email" id="resp-email" name="responsavelEmail">
+            <p class="erro-campo">Digite um e-mail válido.</p>
+          </div>
+
+          <div class="campo">
+            <label for="resp-telefone">Telefone do responsável *</label>
+            <input type="tel" id="resp-telefone" name="responsavelTelefone" placeholder="(00) 00000-0000">
+            <p class="erro-campo">Digite um telefone válido.</p>
+          </div>
+
+          <div class="campo">
+            <div class="checkbox-consentimento">
+              <input type="checkbox" id="resp-autorizacao" name="responsavelAutorizacao">
+              <label for="resp-autorizacao">Sou o responsável ou tenho a autorização dele para esta inscrição. *</label>
+            </div>
+            <p class="erro-campo">É preciso confirmar a autorização do responsável.</p>
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- ===================== PERFIL DOADOR ===================== -->
+      <fieldset id="secao-doador" class="secao-perfil" hidden>
+        <legend>Sobre o seu apoio</legend>
+
+        <p class="aviso-sem-cobranca">Este cadastro não gera nenhuma cobrança. Ele só envia o kit do doador para o seu e-mail.</p>
+
+        <div class="campo">
+          <span id="label-nivel">Como você quer apoiar? *</span>
+          <div class="opcoes-lista" role="radiogroup" aria-labelledby="label-nivel">
+            <div class="opcao-linha">
+              <input type="radio" id="doador-torcida" name="doadorNivel" value="torcida">
+              <label for="doador-torcida">Torcida — R$ 20 por mês</label>
+            </div>
+            <div class="opcao-linha">
+              <input type="radio" id="doador-treino" name="doadorNivel" value="treino">
+              <label for="doador-treino">Treino — R$ 50 por mês</label>
+            </div>
+            <div class="opcao-linha">
+              <input type="radio" id="doador-podio" name="doadorNivel" value="podio">
+              <label for="doador-podio">Pódio — R$ 100 por mês</label>
+            </div>
+            <div class="opcao-linha">
+              <input type="radio" id="doador-unica" name="doadorNivel" value="doacao-unica">
+              <label for="doador-unica">Doação única</label>
+            </div>
+            <div class="opcao-linha">
+              <input type="radio" id="doador-decidindo" name="doadorNivel" value="decidindo">
+              <label for="doador-decidindo">Ainda estou decidindo</label>
+            </div>
+          </div>
+          <p class="erro-campo">Escolha uma opção.</p>
+        </div>
+
+        <div class="campo">
+          <span id="label-mural">Quer seu nome no mural de apoiadores?</span>
+          <div class="opcoes-lista" role="radiogroup" aria-labelledby="label-mural">
+            <div class="opcao-linha">
+              <input type="radio" id="doador-mural-sim" name="doadorMural" value="sim">
+              <label for="doador-mural-sim">Sim</label>
+            </div>
+            <div class="opcao-linha">
+              <input type="radio" id="doador-mural-nao" name="doadorMural" value="nao">
+              <label for="doador-mural-nao">Não</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="campo">
+          <label for="doador-marketing">Trabalha com marketing ou dados como autônomo?</label>
+          <select id="doador-marketing" name="doadorMarketing">
+            <option value="">Selecione...</option>
+            <option value="social-media">Social media</option>
+            <option value="gestao-trafego">Gestão de tráfego</option>
+            <option value="analise-dados">Análise de dados</option>
+            <option value="creator">Creator</option>
+            <option value="nao-trabalho">Não trabalho com isso</option>
+          </select>
+          <p class="ajuda">Se sim, o kit traz um bônus de IA para o seu trabalho.</p>
+        </div>
+
+        <div class="campo">
+          <span id="label-relatorio">Quer receber o relatório mensal?</span>
+          <div class="opcoes-lista" role="radiogroup" aria-labelledby="label-relatorio">
+            <div class="opcao-linha">
+              <input type="radio" id="doador-relatorio-sim" name="doadorRelatorio" value="sim" checked>
+              <label for="doador-relatorio-sim">Sim</label>
+            </div>
+            <div class="opcao-linha">
+              <input type="radio" id="doador-relatorio-nao" name="doadorRelatorio" value="nao">
+              <label for="doador-relatorio-nao">Não</label>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- ===================== PERFIL EMPRESA ===================== -->
+      <fieldset id="secao-empresa" class="secao-perfil" hidden>
+        <legend>Sobre a empresa</legend>
+
+        <div class="campo">
+          <label for="empresa-nome">Nome da empresa *</label>
+          <input type="text" id="empresa-nome" name="empresaNome">
+          <p class="erro-campo">Digite o nome da empresa.</p>
+        </div>
+
+        <div class="campo">
+          <label for="empresa-cargo">Seu cargo *</label>
+          <input type="text" id="empresa-cargo" name="empresaCargo">
+          <p class="erro-campo">Digite seu cargo.</p>
+        </div>
+
+        <div class="campo">
+          <label for="empresa-setor">Setor</label>
+          <select id="empresa-setor" name="empresaSetor">
+            <option value="">Selecione...</option>
+            <option value="tecnologia">Tecnologia</option>
+            <option value="games">Games</option>
+            <option value="telecom">Telecom</option>
+            <option value="banco-fintech">Banco ou fintech</option>
+            <option value="varejo">Varejo</option>
+            <option value="outro">Outro</option>
+          </select>
+        </div>
+
+        <div class="campo">
+          <label for="empresa-funcionarios">Número de funcionários</label>
+          <select id="empresa-funcionarios" name="empresaFuncionarios">
+            <option value="">Selecione...</option>
+            <option value="ate-50">Até 50</option>
+            <option value="51-200">51 a 200</option>
+            <option value="201-1000">201 a 1.000</option>
+            <option value="mais-1000">Mais de 1.000</option>
+          </select>
+        </div>
+
+        <div class="campo">
+          <label for="empresa-objetivo">Principal objetivo</label>
+          <select id="empresa-objetivo" name="empresaObjetivo">
+            <option value="">Selecione...</option>
+            <option value="impacto-esg">Impacto ESG</option>
+            <option value="atrair-talentos">Atrair talentos</option>
+            <option value="voluntariado">Voluntariado</option>
+            <option value="marca-comunidade-gamer">Marca na comunidade gamer</option>
+          </select>
+        </div>
+
+        <div class="campo">
+          <span id="label-cota">Cota de interesse *</span>
+          <div class="opcoes-lista" role="radiogroup" aria-labelledby="label-cota">
+            <div class="opcao-linha">
+              <input type="radio" id="empresa-cota-apoiadora" name="empresaCota" value="apoiadora">
+              <label for="empresa-cota-apoiadora">Apoiadora — R$ 12 mil por ano</label>
+            </div>
+            <div class="opcao-linha">
+              <input type="radio" id="empresa-cota-liga" name="empresaCota" value="patrocinadora-liga">
+              <label for="empresa-cota-liga">Patrocinadora de liga — R$ 36 mil por ano</label>
+            </div>
+            <div class="opcao-linha">
+              <input type="radio" id="empresa-cota-mantenedora" name="empresaCota" value="mantenedora">
+              <label for="empresa-cota-mantenedora">Mantenedora — R$ 60 mil por ano</label>
+            </div>
+            <div class="opcao-linha">
+              <input type="radio" id="empresa-cota-presidencia" name="empresaCota" value="presidencia-honra">
+              <label for="empresa-cota-presidencia">Presidência de Honra — R$ 80 mil por ano</label>
+            </div>
+            <div class="opcao-linha">
+              <input type="radio" id="empresa-cota-nao-sei" name="empresaCota" value="nao-sei">
+              <label for="empresa-cota-nao-sei">Ainda não sei</label>
+            </div>
+          </div>
+          <p class="erro-campo">Escolha uma opção.</p>
+        </div>
+
+        <div class="campo">
+          <label for="empresa-lucro-real">A empresa é tributada pelo lucro real?</label>
+          <select id="empresa-lucro-real" name="empresaLucroReal">
+            <option value="">Selecione...</option>
+            <option value="sim">Sim</option>
+            <option value="nao">Não</option>
+            <option value="nao-sei">Não sei</option>
+          </select>
+        </div>
+
+        <div class="campo">
+          <label for="empresa-periodo">Melhor período para uma reunião de 20 minutos</label>
+          <select id="empresa-periodo" name="empresaPeriodo">
+            <option value="">Selecione...</option>
+            <option value="manha">Manhã</option>
+            <option value="tarde">Tarde</option>
+            <option value="tanto-faz">Tanto faz</option>
+          </select>
+        </div>
+
+        <div class="campo">
+          <label for="empresa-linkedin">LinkedIn (opcional)</label>
+          <input type="url" id="empresa-linkedin" name="empresaLinkedin" placeholder="https://linkedin.com/in/...">
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Consentimento</legend>
+        <div class="campo">
+          <div class="checkbox-consentimento">
+            <input type="checkbox" id="campo-consentimento" name="consentimentoLgpd" required>
+            <label for="campo-consentimento">Autorizo o Instituto Ludus a usar meus dados para enviar o kit e entrar em contato sobre o programa. Posso pedir a exclusão a qualquer momento. *</label>
+          </div>
+          <p class="erro-campo">É preciso aceitar o uso dos dados para continuar.</p>
+        </div>
+      </fieldset>
+
+      <button type="submit" class="btn btn-primario" id="botao-enviar">Quero receber meu kit</button>
+      <p class="status-envio" id="status-envio" role="status" aria-live="polite"></p>
+    </div>
+  </form>
+
+  <section class="tela-sucesso" id="tela-sucesso" aria-live="polite">
+    <span class="check" aria-hidden="true">✓</span>
+    <h2>Pronto!</h2>
+    <p>O seu kit está a caminho do e-mail <strong id="sucesso-email"></strong>. Confira também a caixa de spam.</p>
+    <button type="button" class="btn btn-secundario" id="botao-nova-resposta">Enviar outra resposta</button>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <p>Trabalho acadêmico. Instituto fictício.</p>
+    <p><a href="privacidade.html">Política de privacidade</a></p>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
