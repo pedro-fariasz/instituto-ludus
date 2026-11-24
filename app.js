@@ -1,6 +1,6 @@
 // Instituto Ludus — lógica do formulário
 // Troque esta constante na Fase 2, depois de publicar o Apps Script como app da web.
-const APPS_SCRIPT_URL = "";
+const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzGno_9IJ-WPQbQulLmscOwiMMZvucJUsRbouwoy2kRG0lFNWlmTnj1pJHi_3901lOMGw/exec";
 
 (function () {
   "use strict";
