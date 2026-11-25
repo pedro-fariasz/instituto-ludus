@@ -275,7 +275,7 @@ const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzGno_9IJ-WPQbQ
     if (!perfilAtual) return;
 
     // honeypot: se veio preenchido, finge sucesso e não envia nada
-    const honeypot = document.getElementById("campo-site").value;
+    const honeypot = document.getElementById("campo-verificacao-interna").value;
     if (honeypot) {
       mostrarSucesso(document.getElementById("campo-email").value.trim());
       return;
